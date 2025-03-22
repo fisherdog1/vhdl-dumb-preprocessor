@@ -1,0 +1,39 @@
+VHDL "dumb parser" template tool
+
+Reads an input VHDL file line by line. Replaces "pasteme" locations with named snippets passed via another file or defined via "snippet" commands.
+
+Pasteme Commands
+
+A pasteme command specifies a line and its indentation at which to place a snippet with a given name. The following command will be replaced with the snippet having name "my_snippet"
+
+--pasteme my_snippet
+
+Pastemes can be modified by a trailing \ 
+
+This removes newlines before and after the snippet, but ensures that there is at least one whitespace character before and after the snippet.
+
+Pastemes can also be modified by a regex-like repetition modifier, either ?, *, or +
+
+? : Zero or one paste. Allows one snippet at this location. 
+
++ : One or more pastes. Allows multiple snippets to bind this location. It is an error if a matching snippet is not found.
+
+* : Zero or more pastes. Allows multiple snippets, or zero snippets. Behaves the same as ? in the case of zero snippets.
+
+Without a modifier, a pasteme requires exactly one snippet.
+
+For repetition modifiers that allow zero snippets, if no snippet is placed, the command itself does not appear in the output. If such a command is inline-modified, all whitespace is removed from around it, not just newlines.
+
+For pastemes that allow more than one snippet (* and +), only the first such command has any effect, since it will consume all matches and any later commands with the same snippet name will receive nothing.
+
+Snippet Commands
+
+A pair of snippet commands encloses one or more lines and defines a snippet. A snippet has a name which determines which pasteme commands it will match with.
+
+--snippet my_snippet
+Place this text at "my_snippet" locations
+--endsnippet
+
+Snippet commands and their contents to not appear in the output file.
+
+When parsing a file, the file itself is considered a snippet and may be used later in the command line. Its snippet name is the filename.
