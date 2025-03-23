@@ -9,7 +9,6 @@ There are many cases where VHDL sources could do with some pre-processing. Certa
 * Copy and paste snippets from files or the command line
 * Generate new snippets by parameterizing them with other snippets
 * "pragma push/pop" style scoping of snippets
-* Create a cool looking crash if you pop more contexts that exist
 
 ## Features I could be Bothered to Add
 * Extraction/insertion of documentation from entities and subprograms
@@ -120,3 +119,8 @@ If any group can be trusted to find a way to run an executable, even if it's not
 
 ## Why is this written in Go
 Because as someone who values consistent, useful, and error-resistant syntax, Python causes significant damage to my sanity every time I use it. This choice is mostly an effort to learn Go and perhaps push back on the trend of using Python for devops tasks in hardware industries. Being less clumsy than Tcl is not a high enough bar. I would also have considered Rust, but Go was much easier to install. Also, needing a ton of extra steps to allow and check for null pointers is very annoying when writing parsers, which are traditionally a big mess of frequently-null pointers.
+
+## Known Issues
+* Cool looking crash if you pop more contexts that exist
+* Frustrating addition of whitespace that should not be there
+* Wobbly looking parser
