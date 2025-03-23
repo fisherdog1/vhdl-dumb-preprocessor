@@ -63,10 +63,13 @@ my_function(3) == 4
 --endsnippets
 ```
 
-Running the following command will first load each line from conditions.vhd as a snippet, each with the name "conditions"
+Run the following command:
 ```
 .\vdp.exe -f conditions.vhd -f template.vhd -o
 ```
+* First -f loads each line from conditions.vhd as its own snippet named "conditions"
+* Second -f loads template.vhd, creates one "unit_test" snippet for each existing "conditions" snippet. A snippet named "template.vhd" is created implicitly
+* -o generates code from the snippet of the last loaded file. The "pasteme" line is populated with each snippet having name "unit_test"
 
 Output:
 ```
@@ -102,6 +105,8 @@ begin
 	end process;
 end architecture sim;
 ```
+
+This technique can be used for all kinds of repetitive VHDL writing.
 
 ## Building
 Install Go for your platform: https://go.dev/dl/
