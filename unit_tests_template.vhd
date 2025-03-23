@@ -1,21 +1,22 @@
-library work;
-	use work.address_math.all;
-
-entity unit_tests is
-end entity;
 --snippet unit_test
 report "
---pasteme test_condition\
+--pasteme conditions\
 " severity note;
-
 if not (
---pasteme test_condition\
+--pasteme conditions\
 ) then 
 	report "FAIL" severity error;
 	exit; 
 end if;
 
---endsnippet foreach test_condition
+--endsnippet foreach conditions
+
+library work;
+	use work.address_math.all;
+
+entity unit_tests is
+end entity;
+
 architecture sim of unit_tests is
 begin
 	process
